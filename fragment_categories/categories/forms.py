@@ -14,7 +14,8 @@ class CategoryAdminForm(forms.ModelForm):
 
     def clean_name(self):
         if '/' in self.cleaned_data['name']:
-            raise forms.ValidationError("A category name can't contain slashes.")
+            raise forms.ValidationError(
+                "A category name can't contain slashes.")
         return self.cleaned_data['name']
 
     def clean(self):
@@ -26,13 +27,16 @@ class CategoryAdminForm(forms.ModelForm):
 
             kwargs = {}
             if self.cleaned_data.get('hierarchy', False):
-                kwargs['hierarchy__pk'] = int(self.cleaned_data['hierarchy'].id)
+                kwargs['hierarchy__pk'] = int(
+                    self.cleaned_data['hierarchy'].id)
                 kwargs['parent__isnull'] = True
             else:
                 kwargs['parent__pk'] = int(self.cleaned_data['parent'].id)
-            this_level_slugs = [c.slug for c in Category.objects.filter(**kwargs) if c.id != self.initial.get("id", None) and c.id != self.instance.id]
+            this_level_slugs = [c.slug for c in Category.objects.filter(
+                **kwargs) if c.id != self.initial.get("id", None) and c.id != self.instance.id]
             if self.cleaned_data['slug'] in this_level_slugs:
-                raise forms.ValidationError("A category slug must be unique among categories at its level.")
+                raise forms.ValidationError(
+                    "A category slug must be unique among categories at its level.")
 
             if not self.cleaned_data['parent']:
                 return self.cleaned_data
@@ -44,7 +48,8 @@ class CategoryAdminForm(forms.ModelForm):
             if p_data and h_data:
                 p = Category.objects.get(pk=p_data)
                 if p.hierarchy_id != h_data:
-                    raise forms.ValidationError("This parent is not within the selected hierarchy.")
+                    raise forms.ValidationError(
+                        "This parent is not within the selected hierarchy.")
 
             this_id = self.cleaned_data.get("id", None)
             if not this_id:
@@ -56,7 +61,8 @@ class CategoryAdminForm(forms.ModelForm):
                 return self.cleaned_data
 
             if selected_parent.id == this_id:
-                raise forms.ValidationError("A category can't be its own parent.")
+                raise forms.ValidationError(
+                    "A category can't be its own parent.")
 
             try:
                 this_category = Category.objects.get(pk=p_data)
@@ -65,7 +71,8 @@ class CategoryAdminForm(forms.ModelForm):
 
             for c in this_category.get_all_children():
                 if c.id == this_id:
-                    raise forms.ValidationError("A category can't set a child category to be its own parent.")
+                    raise forms.ValidationError(
+                        "A category can't set a child category to be its own parent.")
             return self.cleaned_data
         else:
             raise forms.ValidationError("Cannot clean data")

@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.core.urlresolvers import reverse
 
+
 class Hierarchy(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField()
@@ -63,7 +64,8 @@ class CategoryManager(models.Manager):
         """
         if not category_list:
             return []
-        qs = reduce(operator.or_, (models.Q(path__startswith=c.path) for c in category_list))
+        qs = reduce(operator.or_, (models.Q(path__startswith=c.path)
+                                   for c in category_list))
         return self.filter(qs).order_by('path')
 
     def get_recursive_paths(self, path):
@@ -106,8 +108,7 @@ class Category(models.Model):
     )
     featured = models.BooleanField(default=False)
     objects = CategoryManager()
-    
-    
+
     class Meta:
         verbose_name_plural = 'categories'
         unique_together = (('parent', 'name'),)
@@ -182,7 +183,6 @@ def get_path_bits(path):
 
 def slugify_path(path):
     return '/%s' % '/'.join([slugify(bit) for bit in get_path_bits(path)])
-
 
 
 class CategoryModel(models.Model):

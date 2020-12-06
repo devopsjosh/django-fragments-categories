@@ -3,6 +3,7 @@ from graphene import relay
 
 from fragment_categories.categories.models import Category, Hierarchy
 
+
 class CategoryHierarchyNode(DjangoObjectType):
     class Meta:
         model = Hierarchy
@@ -12,6 +13,7 @@ class CategoryHierarchyNode(DjangoObjectType):
             'slug': ['exact', ],
         }
         interfaces = (relay.Node,)
+
 
 class CategoryNode(DjangoObjectType):
     class Meta:
