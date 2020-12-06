@@ -8,7 +8,7 @@ README = open(os.path.join(os.path.dirname(__file__),
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='django-fragments-categories',
+    name='django-fragment-categories',
     version='0.1.0',
     packages=['fragment_categories'],
     license='MIT License',

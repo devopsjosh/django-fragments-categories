@@ -1,7 +1,7 @@
 from graphene_django import DjangoObjectType
 from graphene import relay
 
-from fragment_categories.categories.models import Category, Hierarchy
+from .models import Category, Hierarchy
 
 
 class CategoryHierarchyNode(DjangoObjectType):

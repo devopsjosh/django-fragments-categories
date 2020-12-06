@@ -1,7 +1,7 @@
 import graphene
 from graphene_django.filter import DjangoFilterConnectionField
 
-from fragment_categories.types import CategoryHierarchyNode, CategoryNode
+from .types import CategoryHierarchyNode, CategoryNode
 
 
 class Query(graphene.ObjectType):

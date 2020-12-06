@@ -1,6 +1,6 @@
 from django.contrib import admin
 from fragment_categories.forms import CategoryAdminForm
-from fragment_categories.models import Category, Hierarchy
+from .models import Category, Hierarchy
 
 
 class CategoryAdmin(admin.ModelAdmin):
