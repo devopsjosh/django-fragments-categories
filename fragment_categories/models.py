@@ -86,7 +86,8 @@ class Category(models.Model):
         blank=True,
         related_name="categories",
         help_text="Must be explicitly selected if there is no parent category.",
-        null=True
+        null=True,
+        on_delete=models.SET_NULL
     )
 
     parent = models.ForeignKey(
@@ -95,7 +96,8 @@ class Category(models.Model):
         null=True,
         related_name="children",
         help_text="If not defined, this will be a top-level category in the given hierarchy.",
-        verbose_name='Parent'
+        verbose_name='Parent',
+        on_delete=models.SET_NULL,
     )
     name = models.CharField(
         max_length=100
