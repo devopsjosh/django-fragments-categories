@@ -10,8 +10,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='django-fragments-categories',
     version='0.1.0',
-    packages=['fragment_categories', 'fragment_categories/*'],
-    include_package_data=True,
+    packages=['fragment_categories'],
     license='MIT License',
     description='Categories for the django fragments framework.',
     long_description=README,
