@@ -8,6 +8,8 @@ Fragments Categories is a GraphQL API for a hierarchial category structure.
 
 - Python 3.7.x
 - Django >= 2.2.x
+- graphene-django = "\*"
+- django-filter = "\*"
 
 # INCLUDED APPS
 

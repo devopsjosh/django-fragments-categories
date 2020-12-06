@@ -31,9 +31,5 @@ setup(
     ],
     install_requires=[
         'Django>=2.0',
-        'Pillow>=2.8.2',
-        'django-reversion>=1.8.7',
-        'django-summernote>=0.6.8',
-        'sorl-thumbnail>=12.2'
     ]
 )
