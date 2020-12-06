@@ -2,7 +2,7 @@ import re
 import operator
 from django.db import models
 from django.utils.text import slugify
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 class Hierarchy(models.Model):
@@ -75,6 +75,7 @@ class CategoryManager(models.Manager):
             result.append('/%s' % '/'.join(bits[:i+1]))
         return result
 
+    @staticmethod
     def get_path_bits(path):
         return [bit.strip() for bit in path.strip().strip('/').split('/')]
 
