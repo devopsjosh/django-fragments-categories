@@ -12,3 +12,4 @@ develop-eggs
 .installed.cfg
 lib64
 ._.DS_Store
+.DS_Store
