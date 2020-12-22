@@ -11,6 +11,6 @@ class Query(graphene.ObjectType):
         CategoryNode, description="Queries a paginated list of categories.")
 
     category_hierarchy = graphene.relay.Node.Field(
-        CategoryNode, description="Queries a single category hierarchy.")
+        CategoryHierarchyNode, description="Queries a single category hierarchy.")
     category_hierarchies = DjangoFilterConnectionField(
-        CategoryNode, description="Queries a paginated list of category hierarchies.")
+        CategoryHierarchyNode, description="Queries a paginated list of category hierarchies.")
